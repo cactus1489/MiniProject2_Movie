@@ -6,9 +6,15 @@ import seaborn as sns
 from collections import Counter
 import re
 
-# ── Korean font setup for matplotlib (Windows Malgun Gothic) ──
-matplotlib.rc('font', family='Malgun Gothic')
+# ── Korean font setup (cross-platform) ──
+import platform
+if platform.system() == "Windows":
+    matplotlib.rc('font', family='Malgun Gothic')
+else:
+    # Streamlit Cloud (Linux) - use default and handle unicode via seaborn/pandas
+    matplotlib.rc('font', family='DejaVu Sans')
 matplotlib.rcParams['axes.unicode_minus'] = False
+
 
 # Page config
 st.set_page_config(page_title="왕과 사는 남자 - 관람평 대시보드", layout="wide")
